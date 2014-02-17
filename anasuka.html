@@ -1,0 +1,60 @@
+<head>
+  <title>anasuka</title>
+</head>
+
+<body>
+  {{ hello}}
+  {{> deck}}
+</body>
+
+<template name="hello">
+  <h1>Hello World!</h1>
+  {{greeting}}
+  <input type="button" value="Click" />
+</template>
+
+<template name='deck'>
+    <div class="deck-container">
+
+    <!-- Begin slides. Just make elements with a class of slide. -->
+
+    {{#each questions}}
+     <section class="slide">
+      <h2>{{question}}</h2>
+      <ul>
+      {{#each answers}}
+        <li>{{answer}}</li>
+      {{/each}}
+      </ul>
+      </section>
+    {{/each}}
+
+    <!-- End slides. -->
+
+    <!-- Begin extension snippets. Add or remove as needed. -->
+
+    <!-- deck.navigation snippet -->
+    <div aria-role="navigation">
+      <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+      <a href="#" class="deck-next-link" title="Next">&#8594;</a>
+    </div>
+
+    <!-- deck.status snippet -->
+    <p class="deck-status" aria-role="status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.goto snippet -->
+    <form action="." method="get" class="goto-form">
+      <label for="goto-slide">Go to slide:</label>
+      <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+      <datalist id="goto-datalist"></datalist>
+      <input type="submit" value="Go">
+    </form>
+
+    <!-- End extension snippets. -->
+  </div>
+</template>
+
