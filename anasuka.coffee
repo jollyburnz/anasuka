@@ -1,19 +1,15 @@
 if Meteor.isClient
   Meteor.startup ->
-    Session.set 'question', 1
-
-  Template.hello.greeting = ->
-    "Welcome to anasuka."
-
-  Template.hello.events "click input": ->
-    
-    # template data, if any, is available in 'this'
-    console.log "You pressed the button"  if typeof console isnt "undefined"
+    window.answers = []
 
   Template.deck.questions = ->
     Questions.find()
 
+  Template.deck.final = ->
+    Session.get 'finalanswers'
+
   Template.deck.rendered = ->
+    
     $.extend true, $.deck.defaults,
       keys:
         next: ''
@@ -22,14 +18,16 @@ if Meteor.isClient
     $.deck('.slide')
 
   Template.deck.events
-    'click .next': ->
+    'click .next': (e, t) ->
+      console.log 'deckkkkkk!!!'
+      answers.push Session.get 'answer'
+      Session.set 'finalanswers', answers
       $.deck('next')
-      current = Session.get 'question'
-      Session.set 'question', current + 1
 
   Template.answerItem.events
     'change input[type=radio]': (e, t) ->
-      console.log e, @
+      console.log @
+      Session.set 'answer', @
 
 if Meteor.isServer
   Meteor.startup ->
