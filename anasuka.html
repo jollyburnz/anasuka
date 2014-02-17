@@ -13,6 +13,15 @@
   <input type="button" value="Click" />
 </template>
 
+<template name='answerItem'>
+  <div class="radio">
+    <label>
+      <input type="radio" name="adsf" value="{{point}}">
+      {{answer}}
+    </label>
+  </div>
+</template>
+
 <template name='deck'>
     <div class="deck-container">
 
@@ -24,12 +33,7 @@
 
       <div>
       {{#each answers}}
-      <div class="radio">
-        <label>
-          <input type="radio" name="adsf" value="{{point}}">
-          {{answer}}
-        </label>
-      </div>
+        {{> answerItem}}
       {{/each}}
       </div>
 

@@ -1,4 +1,6 @@
 if Meteor.isClient
+  Meteor.startup ->
+    Session.set 'question', 1
 
   Template.hello.greeting = ->
     "Welcome to anasuka."
@@ -20,11 +22,14 @@ if Meteor.isClient
     $.deck('.slide')
 
   Template.deck.events
-    'change input[type=radio]': (e, t) ->
-      console.log e, @
-
     'click .next': ->
       $.deck('next')
+      current = Session.get 'question'
+      Session.set 'question', current + 1
+
+  Template.answerItem.events
+    'change input[type=radio]': (e, t) ->
+      console.log e, @
 
 if Meteor.isServer
   Meteor.startup ->
