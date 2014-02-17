@@ -21,8 +21,10 @@ if Meteor.isClient
 
   Template.deck.events
     'change input[type=radio]': (e, t) ->
-      console.log e
-      console.log @
+      console.log e, @
+
+    'click .next': ->
+      $.deck('next')
 
 if Meteor.isServer
   Meteor.startup ->
