@@ -19,6 +19,11 @@ if Meteor.isClient
 
     $.deck('.slide')
 
+  Template.deck.events
+    'change input[type=radio]': (e, t) ->
+      console.log e
+      console.log @
+
 if Meteor.isServer
   Meteor.startup ->
 

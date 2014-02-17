@@ -21,13 +21,21 @@
     {{#each questions}}
      <section class="slide">
       <h2>{{question}}</h2>
-      <ul>
+
+      <div>
       {{#each answers}}
-        <li>{{answer}}</li>
+      <div class="radio">
+        <label>
+          <input type="radio" name="optionsRadios" value="{{point}}">
+          {{answer}}
+        </label>
+      </div>
       {{/each}}
-      </ul>
+      </div>
+
       </section>
     {{/each}}
+
 
     <!-- End slides. -->
 
