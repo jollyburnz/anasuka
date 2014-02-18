@@ -16,7 +16,7 @@
 </template>
 
 <template name='deck'>
-    <div class="deck-container">
+  <div class="deck-container">
 
     <!-- Begin slides. Just make elements with a class of slide. -->
 
@@ -34,13 +34,15 @@
       </section>
     {{/each}}
 
-    <section class="slide">
+      <section id='finalslide' class="slide">
       <h2>Congratulations, we just created an investment portfolio for you!<br/>$$$</h2>
       <br/><br/>
-      {{#each final}}
-        <p>{{answer}} / {{point}}</p>
-      {{/each}}
-    </section>
+      {{#if finalyet}}
+        {{#each final}}
+          <p>{{answer}} / {{point}}</p>
+        {{/each}}
+      {{/if}}
+      </section>
 
     <!-- End slides. -->
 
