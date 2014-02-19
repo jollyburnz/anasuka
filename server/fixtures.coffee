@@ -107,4 +107,6 @@ if Questions.find().count() is 0
       answer: "250,000+"
       point: 8
     ]
+
+  
     
