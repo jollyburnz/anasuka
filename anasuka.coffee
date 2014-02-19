@@ -13,6 +13,11 @@ if Meteor.isClient
     Session.get 'finalanswers'
     #window.answers
 
+  Template.deck.test = (percent) ->
+    amount = Session.get 'amount'
+    invest = amount * parseFloat(percent)
+    invest.toFixed(2)
+
   Template.deck.rendered = ->
     console.log 'deck rendered'
     $.extend true, $.deck.defaults,
@@ -21,7 +26,6 @@ if Meteor.isClient
         previous: ''
 
     $.deck('.slide')
-    $('#finalslide').show()
 
   Template.deck.events
     'click .next': (e, t) ->
@@ -29,9 +33,14 @@ if Meteor.isClient
       answers.push Session.get 'answer'
       Session.set 'finalanswers', answers
 
-      if answers.length is 8
+      if answers.length is 6
         Session.set 'finalyet', true
 
+      $.deck('next')
+
+    'click .finish': (e, t) ->
+      #console.log t.find('#amount').value
+      Session.set 'amount', t.find('#amount').value
       $.deck('next')
 
   Template.answerItem.events
