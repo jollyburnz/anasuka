@@ -19,11 +19,6 @@ if Meteor.isClient
   Template.deck.notfinalyet = ->
     Session.equals 'finalyet', false
 
-  Template.deck.test = (percent) ->
-    amount = Session.get 'amount'
-    invest = amount * parseFloat(percent)
-    invest.toFixed(2)
-
   Template.deck.rendered = ->
     console.log 'deck rendered'
     $.extend true, $.deck.defaults,
@@ -69,6 +64,11 @@ if Meteor.isClient
   Template.finalslide.final = ->
     Session.get 'finalanswers'
     #window.answers
+
+  Template.finalslide.test = (percent) ->
+    amount = Session.get 'amount'
+    invest = amount * parseFloat(percent)
+    invest.toFixed(2)
 
   Template.finalslide.rendered = ->
     console.log 'finalslide'
